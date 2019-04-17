@@ -1,4 +1,5 @@
-import { ADD_TODO, COMPLETE_TODO, FETCH_QUOTES, INPUT, CLEAR_INPUT, GET_COORDS, FETCH_WEATHER } from './types';
+import { ADD_TODO, COMPLETE_TODO, FETCH_QUOTES, INPUT, CLEAR_INPUT, GET_COORDS, FETCH_WEATHER, FETCH_BG_IMG } from './types';
+import axios from 'axios';
 
 // for input field
 
@@ -72,4 +73,29 @@ export const fetchWeather = (lat, lon) => dispatch => {
         })
         );
 }
+
+// to fetch background image
+
+export const fetchImage = () => dispatch => {
+    const n = Math.floor(Math.random() * 1000)
+    const url = 'https://api.pexels.com/v1/curated?per_page=1&page=' + n
+    axios({
+        method: 'GET',
+        url: url,
+        headers: {
+            "Authorization": '563492ad6f91700001000001266dc01858bb499985e410b7a3e3bae5',
+            "Content-Type": 'application/json'
+        }
+    })
+        .then(response => JSON.parse(response.request.response))
+        .then(data => dispatch({
+            type: FETCH_BG_IMG,
+            data
+        }))
+        .catch(error => {
+            console.log("ERROR:", error)
+        })
+}
+
+
 

@@ -12,7 +12,12 @@ class ToDoList extends React.Component {
     handleSubmit = () => {
         this.props.addTodo(this.props.input)
         this.props.clearInput()
-        // console.log('after', this.props.input)
+    }
+
+    enterKeySubmit = (e) => {
+        if (e.which === 13 && !e.shiftKey) {
+            this.handleSubmit()
+        }
     }
 
     handleCheckbox = (event) => {
@@ -20,14 +25,23 @@ class ToDoList extends React.Component {
         this.props.completeTodo(event.target.name)
     }
 
+
+    // scrollToBottom = () => {
+    //     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    // }
+
+    // componentDidUpdate() {
+    //     this.scrollToBottom();
+    // }
+
     render() {
-        // const { input } = this.state
+        // console.log(typeof (this.props.todo))
         const todolist = this.props.todo.length ? (this.props.todo.map((todo, index) => {
             return (
                 <p key={index} style={{ margin: "1em" }}>
                     <label name={todo.id}>
-                        <input type="checkbox" name={todo.id} onChange={this.handleCheckbox} />
-                        <span style={todo.completed ? { textDecoration: 'line-through' } : null}>{todo.text}</span>
+                        <input type="checkbox" className="filled-in checkbox-white" name={todo.id} onChange={this.handleCheckbox} />
+                        <span className="font-white" style={todo.completed ? { textDecoration: 'line-through' } : null}>{todo.text}</span>
                     </label>
                 </p>
             )
@@ -36,10 +50,12 @@ class ToDoList extends React.Component {
             <div className="container">
                 <div id='todo-box'>
                     <p>To do list for today:</p>
-                    {/* <input value={input} onChange={this.handleChange} /> */}
-                    <input value={this.props.input} onChange={this.handleChange} />
-                    <button onClick={this.handleSubmit}>Submit</button>
-                    <div style={{ display: "flex", width: "960px", flexWrap: "wrap" }}>{todolist}</div>
+                    <input type="text" className="font-white" value={this.props.input} onChange={this.handleChange} onKeyPress={this.enterKeySubmit} />
+                    {/* <button onClick={this.handleSubmit}>Submit</button> */}
+                    <div className="todo-box">
+                        {todolist}
+                        {/* <div style={{ float: "right", clear: "both" }} ref={(e) => { this.messagesEnd = e }}></div> */}
+                    </div>
                 </div>
             </div>
 
