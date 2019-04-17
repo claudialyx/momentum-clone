@@ -1,3 +1,18 @@
+Hi, this is my attempt in making a momentum clone using React-Redux. 
+
+Preview of my version of the clone:
+![](images/preview.PNG)
+
+This version is not the best, and there are some things that I would like to fix in the future, but will put it on hold for now.
+
+Some issues that I will fix in the future:
+1) For the background, I am rendering random background image through a fetch request to Pexels. As the background image is random, sometimes the font color blends into the background (which I know isn't ideal). A fix for it that I could think of is preparing some backgrounds that can be used and randomly assigning a new background on page refresh. 
+
+2) As new to do items are added, white spaces will appear at the bottom of the page.
+
+3) Have yet to include the logic to make the tweet button functionable. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
