@@ -13,3 +13,5 @@ export const FETCH_QUOTES = "FETCH_QUOTES"
 export const GET_COORDS = "GET_COORDS"
 export const FETCH_WEATHER = "FETCH_WEATHER"
 
+// to fetch images 
+export const FETCH_BG_IMG = "FETCH_BG_IMG"

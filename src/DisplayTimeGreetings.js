@@ -16,8 +16,8 @@ const DisplayTimeGreetings = () => {
     const currentTime = new moment().format("hh:mm a")
     return (
         <div>
-            <p style={{ fontSize: "600%", margin: "0", display: "flex", alignItems: "center", justifyContent: "center" }}>{currentTime}</p>
-            <p style={{ fontSize: "400%", margin: "0", display: "flex", alignItems: "center", justifyContent: "center" }}>{getGreetingTime()} </p>
+            <p style={{ fontSize: "800%", margin: "0", display: "flex", alignItems: "center", justifyContent: "center" }}>{currentTime}</p>
+            <p style={{ fontSize: "600%", margin: "0", display: "flex", alignItems: "center", justifyContent: "center" }}>{getGreetingTime()} </p>
         </div >
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuotes } from './redux/actions';
+import { Button } from 'react-bootstrap'
 
 class DisplayQuote extends React.Component {
 
@@ -12,22 +13,30 @@ class DisplayQuote extends React.Component {
         this.props.fetchQuotes()
     }
 
-    render() {
-        const quoteDetail = this.props.data.map((quote, index) => {
+    quoteDetail = () =>
+        this.props.data.map((quote, index) => {
             return (
-                <div id="text" key={index} style={{ display: "flex", maxWidth: "70vw" }}>
+                <div id="text" key={index}>
                     <p>"{quote.quote}" --{quote.author}</p>
                 </div>
             )
         })
+
+    render() {
         return (
-            <div id="quote-box" style={{ display: "flex", alignItems: "baseline", justifyContent: "space-around" }} >
-                <div id="tweet-quote" style={{ display: "flex" }} >
-                    <button>Tweet Quote</button>
-                </ div>
-                {quoteDetail}
-                <div id="new-quote" style={{ display: "flex" }}>
-                    <button onClick={this.newQuote}>New Quote</button>
+            <div id="quote-box">
+                <div className="bottom">
+                    {this.quoteDetail()}
+                </div >
+                <div className="bottom-left">
+                    <div id="tweet-quote"  >
+                        <Button>Tweet Quote</Button>
+                    </ div>
+                </div>
+                <div className="bottom-right">
+                    <div id="new-quote">
+                        <Button onClick={this.newQuote}>New Quote</Button>
+                    </div>
                 </div>
             </div >
         )

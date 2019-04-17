@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { INPUT, ADD_TODO, COMPLETE_TODO, FETCH_QUOTES, CLEAR_INPUT, GET_COORDS, FETCH_WEATHER } from './types';
+import { INPUT, ADD_TODO, COMPLETE_TODO, FETCH_QUOTES, CLEAR_INPUT, GET_COORDS, FETCH_WEATHER, FETCH_BG_IMG } from './types';
 
 
 const defaultState = [];
@@ -23,9 +23,7 @@ const todolistReducer = (state = defaultState, action) => {
         case ADD_TODO:
             return [...state, { id: action.id, text: action.text, completed: false }];
         case COMPLETE_TODO:
-            // console.log('state', state)
             // console.log('state', state.id) // returns undefined, have to map to get the id 
-            // console.log('action', action.id)
             // will return a new state with the specific checkboxes's completed status turned true
             return (state.map(todo => (todo.id === action.id) ? { id: todo.id, text: todo.text, completed: !todo.completed } : todo))
         // .map() does not mutate the original array, so don't have to do this:
@@ -60,9 +58,19 @@ const coordinateReducer = (state = [], action) => {
 const weatherReducer = (state = defaultState, action) => {
     switch (action.type) {
         case FETCH_WEATHER:
-            console.log(action.data)
-            console.log([...state, { city: action.data.name, weather: action.data.weather, temp: action.data.main }])
+            // console.log(action.data)
+            // console.log([...state, { city: action.data.name, weather: action.data.weather, temp: action.data.main }])
             return [...state, { city: action.data.name, weather: action.data.weather, temp: action.data.main }];
+        default:
+            return state;
+    }
+}
+
+const fetchImageReducer = (state = defaultState, action) => {
+    switch (action.type) {
+        case FETCH_BG_IMG:
+            console.log([...state, { img_data: action.data.photos }])
+            return [...state, { img_data: action.data.photos }]
         default:
             return state;
     }
@@ -73,7 +81,8 @@ const rootReducer = combineReducers({
     displayQuote: displayQuoteReducer,
     input: inputReducer,
     coord: coordinateReducer,
-    weather: weatherReducer
+    weather: weatherReducer,
+    bgImage: fetchImageReducer
 })
 
 export default rootReducer;

@@ -43,15 +43,19 @@ class DisplayWeather extends React.Component {
             const temp_max = this.convertKelvinToCelsius(data.temp.temp_max)
             const temp_min = this.convertKelvinToCelsius(data.temp.temp_min)
             return (
-                <div key={index} style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <p>{data.city}</p>
-                    <span className="temperature">{temp_avg}°</span>
-                    <span className="temperature-max-min">{temp_max}°/{temp_min}°</span>
-                    <span className="unit hide">c</span>
-                    {data.weather.map((data, index) =>
-                        < WeatherIcon name="owm" key={index} iconId={data.id.toString()} description={data.description} flip="horizontal" rotate="90" />
-                    )}
-                </div>
+                <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginRight: "1em" }}>
+                    <div style={{ marginTop: "1em" }}>
+                        <p style={{ margin: 0 }}>{data.city}</p>
+                        <div>
+                            {data.weather.map((data, index) =>
+                                < WeatherIcon name="owm" key={index} iconId={data.id.toString()} description={data.description} flip="horizontal" rotate="90" />
+                            )}
+                            <span className="temperature">{temp_avg}°</span>
+                        </div>
+                        <span className="temperature-max-min">{temp_max}°/{temp_min}°</span>
+                        <span className="unit hide">c</span>
+                    </div>
+                </div >
             )
         });
 
